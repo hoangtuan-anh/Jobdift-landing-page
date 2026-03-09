@@ -1,0 +1,626 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>JobDrift — Curated Freelance Jobs, Delivered Free</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Sora:wght@600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --green: #16A34A;
+      --green-hover: #15803D;
+      --green-soft: #DCFCE7;
+      --dark: #0B0F19;
+      --secondary: #4B5563;
+      --border: #E5E7EB;
+      --bg-alt: #F9FAFB;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #ffffff;
+      color: var(--dark);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    h1, h2, h3 { font-family: 'Sora', sans-serif; }
+
+    /* ── Nav ── */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: rgba(255,255,255,0.92);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-inner {
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 0 24px;
+      height: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .logo {
+      font-family: 'Sora', sans-serif;
+      font-weight: 700;
+      font-size: 22px;
+      color: var(--dark);
+      letter-spacing: -0.02em;
+    }
+    .logo span { color: var(--green); }
+    .nav-cta {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--green);
+      text-decoration: none;
+      padding: 8px 18px;
+      border: 1.5px solid var(--green);
+      border-radius: 8px;
+      transition: background 0.18s, color 0.18s;
+    }
+    .nav-cta:hover { background: var(--green); color: #fff; }
+    .nav-cta:active { background: var(--green-hover); }
+
+    /* ── Section wrapper ── */
+    .section { padding: 96px 24px; }
+    .section-alt { background: var(--bg-alt); }
+    .inner { max-width: 1080px; margin: 0 auto; }
+
+    /* ── Hero ── */
+    #hero {
+      padding: 100px 24px 96px;
+      text-align: center;
+    }
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: var(--green-soft);
+      color: var(--green);
+      font-size: 13px;
+      font-weight: 600;
+      padding: 5px 14px;
+      border-radius: 100px;
+      margin-bottom: 28px;
+      border: 1px solid #BBF7D0;
+      letter-spacing: 0.01em;
+    }
+    #hero h1 {
+      font-size: clamp(36px, 6vw, 60px);
+      font-weight: 800;
+      line-height: 1.1;
+      letter-spacing: -0.04em;
+      color: var(--dark);
+      max-width: 780px;
+      margin: 0 auto 20px;
+    }
+    #hero h1 .highlight { color: var(--green); }
+    #hero > div > p {
+      font-size: 18px;
+      line-height: 1.65;
+      color: var(--secondary);
+      max-width: 520px;
+      margin: 0 auto 40px;
+    }
+
+    /* Signup form */
+    .signup-form {
+      display: flex;
+      gap: 10px;
+      justify-content: center;
+      flex-wrap: wrap;
+      max-width: 480px;
+      margin: 0 auto 16px;
+    }
+    .signup-form input {
+      flex: 1;
+      min-width: 220px;
+      padding: 13px 18px;
+      border: 1.5px solid var(--border);
+      border-radius: 10px;
+      font-size: 15px;
+      font-family: 'Inter', sans-serif;
+      color: var(--dark);
+      background: #fff;
+      outline: none;
+      transition: border-color 0.18s, box-shadow 0.18s;
+    }
+    .signup-form input::placeholder { color: #9CA3AF; }
+    .signup-form input:focus {
+      border-color: var(--green);
+      box-shadow: 0 0 0 3px rgba(22,163,74,0.12);
+    }
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 13px 24px;
+      background: var(--green);
+      color: #fff;
+      font-size: 15px;
+      font-weight: 600;
+      font-family: 'Inter', sans-serif;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      text-decoration: none;
+      transition: background 0.18s, transform 0.12s;
+      white-space: nowrap;
+      box-shadow: 0 2px 8px rgba(22,163,74,0.25), 0 1px 2px rgba(0,0,0,0.06);
+    }
+    .btn-primary:hover { background: var(--green-hover); transform: translateY(-1px); color: #fff; }
+    .btn-primary:active { transform: translateY(0); }
+    .hero-note {
+      font-size: 13px;
+      color: #9CA3AF;
+    }
+    .success-msg {
+      background: var(--green-soft);
+      border: 1px solid #BBF7D0;
+      color: var(--green);
+      font-size: 15px;
+      font-weight: 500;
+      padding: 14px 24px;
+      border-radius: 10px;
+      margin: 0 auto 16px;
+      max-width: 480px;
+    }
+    .error-msg {
+      font-size: 13px;
+      color: #EF4444;
+      margin-top: -8px;
+      margin-bottom: 8px;
+    }
+
+    /* ── Social proof strip ── */
+    .proof-strip {
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      padding: 14px 24px;
+      background: #fff;
+    }
+    .proof-inner {
+      max-width: 1080px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 32px;
+      flex-wrap: wrap;
+    }
+    .proof-stat {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 14px;
+      color: var(--secondary);
+    }
+    .proof-stat strong { color: var(--dark); font-weight: 600; }
+    .proof-dot { width: 4px; height: 4px; border-radius: 50%; background: var(--border); }
+
+    /* ── Section labels ── */
+    .section-label {
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--green);
+      margin-bottom: 12px;
+    }
+    .section-headline {
+      font-size: clamp(28px, 4vw, 42px);
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      line-height: 1.15;
+      color: var(--dark);
+      margin-bottom: 16px;
+    }
+    .section-sub {
+      font-size: 17px;
+      line-height: 1.65;
+      color: var(--secondary);
+      max-width: 540px;
+    }
+
+    /* ── Problem Section ── */
+    .pain-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 24px;
+      margin-top: 56px;
+    }
+    .pain-card {
+      background: #fff;
+      border: 1.5px solid var(--border);
+      border-radius: 14px;
+      padding: 28px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.05), 0 4px 16px rgba(0,0,0,0.04);
+    }
+    .pain-icon {
+      width: 40px;
+      height: 40px;
+      background: #FEF2F2;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 16px;
+    }
+    .pain-card h3 {
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--dark);
+      margin-bottom: 8px;
+      letter-spacing: -0.01em;
+    }
+    .pain-card p {
+      font-size: 15px;
+      line-height: 1.6;
+      color: var(--secondary);
+    }
+    .closing-line {
+      margin-top: 48px;
+      font-size: 17px;
+      font-weight: 500;
+      color: var(--secondary);
+      font-style: italic;
+    }
+
+    /* ── Solution Section ── */
+    .steps-row {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 32px;
+      margin-top: 56px;
+    }
+    .step {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 14px;
+    }
+    .step-number {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: var(--green);
+      color: #fff;
+      font-size: 14px;
+      font-weight: 700;
+      font-family: 'Sora', sans-serif;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .step h3 {
+      font-size: 17px;
+      font-weight: 600;
+      color: var(--dark);
+      letter-spacing: -0.01em;
+    }
+    .step p {
+      font-size: 15px;
+      line-height: 1.6;
+      color: var(--secondary);
+    }
+    .mini-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      margin-top: 52px;
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--green);
+      text-decoration: none;
+      transition: gap 0.18s;
+    }
+    .mini-cta:hover { gap: 10px; }
+
+    /* ── Differentiator ── */
+    .compare-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      margin-top: 56px;
+    }
+    .compare-card {
+      border-radius: 16px;
+      padding: 32px;
+      border: 1.5px solid var(--border);
+    }
+    .compare-card.them { background: #fff; }
+    .compare-card.us { background: var(--dark); border-color: transparent; }
+    .compare-tag {
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 24px;
+      display: inline-block;
+    }
+    .compare-card.them .compare-tag { color: #EF4444; }
+    .compare-card.us .compare-tag { color: var(--green); }
+    .compare-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      margin-bottom: 18px;
+      font-size: 15px;
+      line-height: 1.5;
+    }
+    .compare-card.them .compare-item { color: var(--secondary); }
+    .compare-card.us .compare-item { color: #E5E7EB; }
+    .compare-icon { flex-shrink: 0; margin-top: 2px; }
+    .reinforce {
+      margin-top: 40px;
+      font-size: 17px;
+      font-weight: 500;
+      color: var(--secondary);
+    }
+    .reinforce strong { color: var(--dark); }
+
+    /* ── Free Tier Callout ── */
+    .free-tier-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 24px;
+      max-width: 880px;
+      margin: 0 auto;
+    }
+    .free-tier-item {
+      background: var(--bg-alt);
+      border: 1.5px solid var(--border);
+      border-radius: 16px;
+      padding: 32px 24px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      text-align: center;
+      transition: border-color 0.18s, box-shadow 0.18s;
+    }
+    .free-tier-item:hover {
+      border-color: #BBF7D0;
+      box-shadow: 0 4px 20px rgba(22,163,74,0.08);
+    }
+    .free-tier-icon {
+      width: 48px;
+      height: 48px;
+      background: var(--green-soft);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 4px;
+    }
+    .free-tier-number {
+      font-family: 'Sora', sans-serif;
+      font-size: 36px;
+      font-weight: 800;
+      color: var(--green);
+      letter-spacing: -0.04em;
+      line-height: 1;
+    }
+    .free-tier-label {
+      font-size: 14px;
+      line-height: 1.5;
+      color: var(--secondary);
+    }
+
+    /* ── FAQ ── */
+    .faq-list {
+      max-width: 640px;
+      margin: 56px auto 0;
+    }
+    .faq-item {
+      border-bottom: 1px solid var(--border);
+    }
+    .faq-item:first-child { border-top: 1px solid var(--border); }
+    .faq-toggle {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 22px 0;
+      cursor: pointer;
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--dark);
+      letter-spacing: -0.01em;
+      user-select: none;
+    }
+    .faq-toggle:hover { color: var(--green); }
+    .faq-chevron {
+      flex-shrink: 0;
+      transition: transform 0.22s;
+      color: var(--secondary);
+    }
+    .faq-chevron.open { transform: rotate(180deg); }
+    .faq-body {
+      overflow: hidden;
+      transition: max-height 0.28s ease, opacity 0.22s;
+    }
+    .faq-a {
+      padding-bottom: 20px;
+      font-size: 15px;
+      line-height: 1.65;
+      color: var(--secondary);
+    }
+
+    /* ── Final CTA ── */
+    #final-cta {
+      background: var(--dark);
+      text-align: center;
+      padding: 100px 24px;
+    }
+    #final-cta h2 {
+      font-size: clamp(32px, 5vw, 52px);
+      font-weight: 800;
+      letter-spacing: -0.04em;
+      color: #fff;
+      margin-bottom: 16px;
+    }
+    #final-cta h2 .highlight { color: var(--green); }
+    #final-cta > div > p {
+      font-size: 18px;
+      line-height: 1.6;
+      color: #9CA3AF;
+      margin-bottom: 40px;
+      max-width: 440px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    /* ── Footer ── */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 24px;
+      text-align: center;
+      font-size: 13px;
+      color: #9CA3AF;
+    }
+    footer a { color: var(--secondary); text-decoration: none; }
+    footer a:hover { color: var(--dark); }
+
+    :focus-visible {
+      outline: 2px solid var(--green);
+      outline-offset: 2px;
+    }
+
+    /* ── Job Examples ── */
+    #job-examples { text-align: left; }
+    .job-examples-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 24px;
+      margin-top: 56px;
+    }
+    .job-card {
+      border: 1.5px solid var(--border);
+      border-radius: 16px;
+      overflow: hidden;
+      background: #fff;
+      cursor: pointer;
+      transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.05), 0 4px 16px rgba(0,0,0,0.04);
+    }
+    .job-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 32px rgba(22,163,74,0.12), 0 2px 8px rgba(0,0,0,0.08);
+      border-color: #BBF7D0;
+    }
+    .job-card-img-wrap { position: relative; overflow: hidden; }
+    .job-card-img { width: 100%; display: block; }
+    .job-card-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(11,15,25,0.55);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      transition: opacity 0.2s;
+    }
+    .job-card:hover .job-card-overlay { opacity: 1; }
+    .job-card-zoom {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      color: #fff;
+      font-size: 14px;
+      font-weight: 600;
+    }
+    .job-card-footer { padding: 16px 20px 20px; }
+    .job-card-title {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--dark);
+      line-height: 1.45;
+      margin-bottom: 10px;
+    }
+    .job-card-budget {
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--green);
+      background: var(--green-soft);
+      padding: 3px 10px;
+      border-radius: 100px;
+      border: 1px solid #BBF7D0;
+      letter-spacing: 0.01em;
+    }
+    /* Lightbox */
+    .lightbox {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.88);
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      backdrop-filter: blur(4px);
+      cursor: zoom-out;
+    }
+    .lightbox-close {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      background: rgba(255,255,255,0.12);
+      border: 1px solid rgba(255,255,255,0.18);
+      border-radius: 50%;
+      width: 44px;
+      height: 44px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: background 0.18s;
+    }
+    .lightbox-close:hover { background: rgba(255,255,255,0.22); }
+    .lightbox-img {
+      max-width: min(860px, 100%);
+      max-height: 85vh;
+      border-radius: 12px;
+      box-shadow: 0 24px 80px rgba(0,0,0,0.6);
+      cursor: default;
+    }
+
+    @media (max-width: 640px) {
+      .section { padding: 72px 20px; }
+      #hero { padding: 72px 20px; }
+      .steps-row { gap: 40px; }
+      .compare-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <div id="app"></div>
+
+  <!-- Vue 3 CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/vue@3.4.0/dist/vue.global.prod.js"></script>
+
+  <!-- Components -->
+  <script src="js/components/AppNav.js"></script>
+  <script src="js/components/HeroSection.js"></script>
+  <script src="js/components/ProofStrip.js"></script>
+  <script src="js/components/ProblemSection.js"></script>
+  <script src="js/components/SolutionSection.js"></script>
+  <script src="js/components/WhyDifferent.js"></script>
+  <script src="js/components/FreeTierCallout.js"></script>
+  <script src="js/components/FaqSection.js"></script>
+  <script src="js/components/JobExamples.js"></script>
+  <script src="js/components/FinalCta.js"></script>
+  <script src="js/components/AppFooter.js"></script>
+
+  <!-- App bootstrap -->
+  <script src="js/app.js"></script>
+</body>
+</html>

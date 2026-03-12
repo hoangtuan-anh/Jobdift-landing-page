@@ -3,624 +3,543 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>JobDrift — Curated Freelance Jobs, Delivered Free</title>
+
+  <title>JobDrift — Find Freelance Jobs Free, With a Professional Dashboard</title>
+  <meta name="description" content="JobDrift is a free platform that finds and curates freelance job leads for you. Manage everything from a free job dashboard — no subscriptions, no credit card required." />
+  <link rel="canonical" href="https://jobdrift.io/" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://jobdrift.io/" />
+  <meta property="og:title" content="JobDrift — Find Freelance Jobs Free, With a Professional Dashboard" />
+  <meta property="og:description" content="JobDrift finds and curates freelance job leads for you, completely free. Manage them all from a professional dashboard — no subscriptions, no credit card." />
+  <meta property="og:site_name" content="JobDrift" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="JobDrift — Find Freelance Jobs Free, With a Professional Dashboard" />
+  <meta name="twitter:description" content="JobDrift finds and curates freelance job leads for you, completely free. Manage them all from a professional dashboard." />
+
+  <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Sora:wght@600;700;800&display=swap" rel="stylesheet" />
-  <style>
-    :root {
-      --green: #16A34A;
-      --green-hover: #15803D;
-      --green-soft: #DCFCE7;
-      --dark: #0B0F19;
-      --secondary: #4B5563;
-      --border: #E5E7EB;
-      --bg-alt: #F9FAFB;
-    }
 
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-
-    body {
-      font-family: 'Inter', sans-serif;
-      background: #ffffff;
-      color: var(--dark);
-      -webkit-font-smoothing: antialiased;
-    }
-
-    h1, h2, h3 { font-family: 'Sora', sans-serif; }
-
-    /* ── Nav ── */
-    nav {
-      position: sticky;
-      top: 0;
-      z-index: 50;
-      background: rgba(255,255,255,0.92);
-      backdrop-filter: blur(10px);
-      border-bottom: 1px solid var(--border);
-    }
-    .nav-inner {
-      max-width: 1080px;
-      margin: 0 auto;
-      padding: 0 24px;
-      height: 60px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-    .logo {
-      font-family: 'Sora', sans-serif;
-      font-weight: 700;
-      font-size: 22px;
-      color: var(--dark);
-      letter-spacing: -0.02em;
-    }
-    .logo span { color: var(--green); }
-    .nav-cta {
-      font-size: 14px;
-      font-weight: 600;
-      color: var(--green);
-      text-decoration: none;
-      padding: 8px 18px;
-      border: 1.5px solid var(--green);
-      border-radius: 8px;
-      transition: background 0.18s, color 0.18s;
-    }
-    .nav-cta:hover { background: var(--green); color: #fff; }
-    .nav-cta:active { background: var(--green-hover); }
-
-    /* ── Section wrapper ── */
-    .section { padding: 96px 24px; }
-    .section-alt { background: var(--bg-alt); }
-    .inner { max-width: 1080px; margin: 0 auto; }
-
-    /* ── Hero ── */
-    #hero {
-      padding: 100px 24px 96px;
-      text-align: center;
-    }
-    .hero-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      background: var(--green-soft);
-      color: var(--green);
-      font-size: 13px;
-      font-weight: 600;
-      padding: 5px 14px;
-      border-radius: 100px;
-      margin-bottom: 28px;
-      border: 1px solid #BBF7D0;
-      letter-spacing: 0.01em;
-    }
-    #hero h1 {
-      font-size: clamp(36px, 6vw, 60px);
-      font-weight: 800;
-      line-height: 1.1;
-      letter-spacing: -0.04em;
-      color: var(--dark);
-      max-width: 780px;
-      margin: 0 auto 20px;
-    }
-    #hero h1 .highlight { color: var(--green); }
-    #hero > div > p {
-      font-size: 18px;
-      line-height: 1.65;
-      color: var(--secondary);
-      max-width: 520px;
-      margin: 0 auto 40px;
-    }
-
-    /* Signup form */
-    .signup-form {
-      display: flex;
-      gap: 10px;
-      justify-content: center;
-      flex-wrap: wrap;
-      max-width: 480px;
-      margin: 0 auto 16px;
-    }
-    .signup-form input {
-      flex: 1;
-      min-width: 220px;
-      padding: 13px 18px;
-      border: 1.5px solid var(--border);
-      border-radius: 10px;
-      font-size: 15px;
-      font-family: 'Inter', sans-serif;
-      color: var(--dark);
-      background: #fff;
-      outline: none;
-      transition: border-color 0.18s, box-shadow 0.18s;
-    }
-    .signup-form input::placeholder { color: #9CA3AF; }
-    .signup-form input:focus {
-      border-color: var(--green);
-      box-shadow: 0 0 0 3px rgba(22,163,74,0.12);
-    }
-    .btn-primary {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      padding: 13px 24px;
-      background: var(--green);
-      color: #fff;
-      font-size: 15px;
-      font-weight: 600;
-      font-family: 'Inter', sans-serif;
-      border: none;
-      border-radius: 10px;
-      cursor: pointer;
-      text-decoration: none;
-      transition: background 0.18s, transform 0.12s;
-      white-space: nowrap;
-      box-shadow: 0 2px 8px rgba(22,163,74,0.25), 0 1px 2px rgba(0,0,0,0.06);
-    }
-    .btn-primary:hover { background: var(--green-hover); transform: translateY(-1px); color: #fff; }
-    .btn-primary:active { transform: translateY(0); }
-    .hero-note {
-      font-size: 13px;
-      color: #9CA3AF;
-    }
-    .success-msg {
-      background: var(--green-soft);
-      border: 1px solid #BBF7D0;
-      color: var(--green);
-      font-size: 15px;
-      font-weight: 500;
-      padding: 14px 24px;
-      border-radius: 10px;
-      margin: 0 auto 16px;
-      max-width: 480px;
-    }
-    .error-msg {
-      font-size: 13px;
-      color: #EF4444;
-      margin-top: -8px;
-      margin-bottom: 8px;
-    }
-
-    /* ── Social proof strip ── */
-    .proof-strip {
-      border-top: 1px solid var(--border);
-      border-bottom: 1px solid var(--border);
-      padding: 14px 24px;
-      background: #fff;
-    }
-    .proof-inner {
-      max-width: 1080px;
-      margin: 0 auto;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 32px;
-      flex-wrap: wrap;
-    }
-    .proof-stat {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      font-size: 14px;
-      color: var(--secondary);
-    }
-    .proof-stat strong { color: var(--dark); font-weight: 600; }
-    .proof-dot { width: 4px; height: 4px; border-radius: 50%; background: var(--border); }
-
-    /* ── Section labels ── */
-    .section-label {
-      font-size: 12px;
-      font-weight: 700;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--green);
-      margin-bottom: 12px;
-    }
-    .section-headline {
-      font-size: clamp(28px, 4vw, 42px);
-      font-weight: 700;
-      letter-spacing: -0.03em;
-      line-height: 1.15;
-      color: var(--dark);
-      margin-bottom: 16px;
-    }
-    .section-sub {
-      font-size: 17px;
-      line-height: 1.65;
-      color: var(--secondary);
-      max-width: 540px;
-    }
-
-    /* ── Problem Section ── */
-    .pain-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 24px;
-      margin-top: 56px;
-    }
-    .pain-card {
-      background: #fff;
-      border: 1.5px solid var(--border);
-      border-radius: 14px;
-      padding: 28px;
-      box-shadow: 0 1px 3px rgba(0,0,0,0.05), 0 4px 16px rgba(0,0,0,0.04);
-    }
-    .pain-icon {
-      width: 40px;
-      height: 40px;
-      background: #FEF2F2;
-      border-radius: 10px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin-bottom: 16px;
-    }
-    .pain-card h3 {
-      font-size: 16px;
-      font-weight: 600;
-      color: var(--dark);
-      margin-bottom: 8px;
-      letter-spacing: -0.01em;
-    }
-    .pain-card p {
-      font-size: 15px;
-      line-height: 1.6;
-      color: var(--secondary);
-    }
-    .closing-line {
-      margin-top: 48px;
-      font-size: 17px;
-      font-weight: 500;
-      color: var(--secondary);
-      font-style: italic;
-    }
-
-    /* ── Solution Section ── */
-    .steps-row {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      gap: 32px;
-      margin-top: 56px;
-    }
-    .step {
-      display: flex;
-      flex-direction: column;
-      align-items: flex-start;
-      gap: 14px;
-    }
-    .step-number {
-      width: 36px;
-      height: 36px;
-      border-radius: 50%;
-      background: var(--green);
-      color: #fff;
-      font-size: 14px;
-      font-weight: 700;
-      font-family: 'Sora', sans-serif;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
-    }
-    .step h3 {
-      font-size: 17px;
-      font-weight: 600;
-      color: var(--dark);
-      letter-spacing: -0.01em;
-    }
-    .step p {
-      font-size: 15px;
-      line-height: 1.6;
-      color: var(--secondary);
-    }
-    .mini-cta {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      margin-top: 52px;
-      font-size: 15px;
-      font-weight: 600;
-      color: var(--green);
-      text-decoration: none;
-      transition: gap 0.18s;
-    }
-    .mini-cta:hover { gap: 10px; }
-
-    /* ── Differentiator ── */
-    .compare-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 24px;
-      margin-top: 56px;
-    }
-    .compare-card {
-      border-radius: 16px;
-      padding: 32px;
-      border: 1.5px solid var(--border);
-    }
-    .compare-card.them { background: #fff; }
-    .compare-card.us { background: var(--dark); border-color: transparent; }
-    .compare-tag {
-      font-size: 12px;
-      font-weight: 700;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      margin-bottom: 24px;
-      display: inline-block;
-    }
-    .compare-card.them .compare-tag { color: #EF4444; }
-    .compare-card.us .compare-tag { color: var(--green); }
-    .compare-item {
-      display: flex;
-      align-items: flex-start;
-      gap: 12px;
-      margin-bottom: 18px;
-      font-size: 15px;
-      line-height: 1.5;
-    }
-    .compare-card.them .compare-item { color: var(--secondary); }
-    .compare-card.us .compare-item { color: #E5E7EB; }
-    .compare-icon { flex-shrink: 0; margin-top: 2px; }
-    .reinforce {
-      margin-top: 40px;
-      font-size: 17px;
-      font-weight: 500;
-      color: var(--secondary);
-    }
-    .reinforce strong { color: var(--dark); }
-
-    /* ── Free Tier Callout ── */
-    .free-tier-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 24px;
-      max-width: 880px;
-      margin: 0 auto;
-    }
-    .free-tier-item {
-      background: var(--bg-alt);
-      border: 1.5px solid var(--border);
-      border-radius: 16px;
-      padding: 32px 24px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 8px;
-      text-align: center;
-      transition: border-color 0.18s, box-shadow 0.18s;
-    }
-    .free-tier-item:hover {
-      border-color: #BBF7D0;
-      box-shadow: 0 4px 20px rgba(22,163,74,0.08);
-    }
-    .free-tier-icon {
-      width: 48px;
-      height: 48px;
-      background: var(--green-soft);
-      border-radius: 12px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin-bottom: 4px;
-    }
-    .free-tier-number {
-      font-family: 'Sora', sans-serif;
-      font-size: 36px;
-      font-weight: 800;
-      color: var(--green);
-      letter-spacing: -0.04em;
-      line-height: 1;
-    }
-    .free-tier-label {
-      font-size: 14px;
-      line-height: 1.5;
-      color: var(--secondary);
-    }
-
-    /* ── FAQ ── */
-    .faq-list {
-      max-width: 640px;
-      margin: 56px auto 0;
-    }
-    .faq-item {
-      border-bottom: 1px solid var(--border);
-    }
-    .faq-item:first-child { border-top: 1px solid var(--border); }
-    .faq-toggle {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 16px;
-      padding: 22px 0;
-      cursor: pointer;
-      font-size: 16px;
-      font-weight: 600;
-      color: var(--dark);
-      letter-spacing: -0.01em;
-      user-select: none;
-    }
-    .faq-toggle:hover { color: var(--green); }
-    .faq-chevron {
-      flex-shrink: 0;
-      transition: transform 0.22s;
-      color: var(--secondary);
-    }
-    .faq-chevron.open { transform: rotate(180deg); }
-    .faq-body {
-      overflow: hidden;
-      transition: max-height 0.28s ease, opacity 0.22s;
-    }
-    .faq-a {
-      padding-bottom: 20px;
-      font-size: 15px;
-      line-height: 1.65;
-      color: var(--secondary);
-    }
-
-    /* ── Final CTA ── */
-    #final-cta {
-      background: var(--dark);
-      text-align: center;
-      padding: 100px 24px;
-    }
-    #final-cta h2 {
-      font-size: clamp(32px, 5vw, 52px);
-      font-weight: 800;
-      letter-spacing: -0.04em;
-      color: #fff;
-      margin-bottom: 16px;
-    }
-    #final-cta h2 .highlight { color: var(--green); }
-    #final-cta > div > p {
-      font-size: 18px;
-      line-height: 1.6;
-      color: #9CA3AF;
-      margin-bottom: 40px;
-      max-width: 440px;
-      margin-left: auto;
-      margin-right: auto;
-    }
-
-    /* ── Footer ── */
-    footer {
-      border-top: 1px solid var(--border);
-      padding: 24px;
-      text-align: center;
-      font-size: 13px;
-      color: #9CA3AF;
-    }
-    footer a { color: var(--secondary); text-decoration: none; }
-    footer a:hover { color: var(--dark); }
-
-    :focus-visible {
-      outline: 2px solid var(--green);
-      outline-offset: 2px;
-    }
-
-    /* ── Job Examples ── */
-    #job-examples { text-align: left; }
-    .job-examples-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 24px;
-      margin-top: 56px;
-    }
-    .job-card {
-      border: 1.5px solid var(--border);
-      border-radius: 16px;
-      overflow: hidden;
-      background: #fff;
-      cursor: pointer;
-      transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
-      box-shadow: 0 1px 3px rgba(0,0,0,0.05), 0 4px 16px rgba(0,0,0,0.04);
-    }
-    .job-card:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 8px 32px rgba(22,163,74,0.12), 0 2px 8px rgba(0,0,0,0.08);
-      border-color: #BBF7D0;
-    }
-    .job-card-img-wrap { position: relative; overflow: hidden; }
-    .job-card-img { width: 100%; display: block; }
-    .job-card-overlay {
-      position: absolute;
-      inset: 0;
-      background: rgba(11,15,25,0.55);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      opacity: 0;
-      transition: opacity 0.2s;
-    }
-    .job-card:hover .job-card-overlay { opacity: 1; }
-    .job-card-zoom {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      color: #fff;
-      font-size: 14px;
-      font-weight: 600;
-    }
-    .job-card-footer { padding: 16px 20px 20px; }
-    .job-card-title {
-      font-size: 14px;
-      font-weight: 600;
-      color: var(--dark);
-      line-height: 1.45;
-      margin-bottom: 10px;
-    }
-    .job-card-budget {
-      font-size: 12px;
-      font-weight: 700;
-      color: var(--green);
-      background: var(--green-soft);
-      padding: 3px 10px;
-      border-radius: 100px;
-      border: 1px solid #BBF7D0;
-      letter-spacing: 0.01em;
-    }
-    /* Lightbox */
-    .lightbox {
-      position: fixed;
-      inset: 0;
-      background: rgba(0,0,0,0.88);
-      z-index: 1000;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 24px;
-      backdrop-filter: blur(4px);
-      cursor: zoom-out;
-    }
-    .lightbox-close {
-      position: absolute;
-      top: 20px;
-      right: 20px;
-      background: rgba(255,255,255,0.12);
-      border: 1px solid rgba(255,255,255,0.18);
-      border-radius: 50%;
-      width: 44px;
-      height: 44px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      transition: background 0.18s;
-    }
-    .lightbox-close:hover { background: rgba(255,255,255,0.22); }
-    .lightbox-img {
-      max-width: min(860px, 100%);
-      max-height: 85vh;
-      border-radius: 12px;
-      box-shadow: 0 24px 80px rgba(0,0,0,0.6);
-      cursor: default;
-    }
-
-    @media (max-width: 640px) {
-      .section { padding: 72px 20px; }
-      #hero { padding: 72px 20px; }
-      .steps-row { gap: 40px; }
-      .compare-grid { grid-template-columns: 1fr; }
-    }
-  </style>
+  <link rel="stylesheet" href="assets/css/main.css" />
 </head>
 <body>
-  <div id="app"></div>
 
-  <!-- Vue 3 CDN -->
-  <script src="https://cdn.jsdelivr.net/npm/vue@3.4.0/dist/vue.global.prod.js"></script>
+  <!-- ── Navigation ── -->
+  <header>
+    <nav aria-label="Main navigation">
+      <div class="nav-inner">
+        <a href="/" class="logo">Job<span>Drift</span></a>
+        <a href="https://app.jobdrift.io/register" class="nav-cta">Sign Up</a>
+      </div>
+    </nav>
+  </header>
 
-  <!-- Components -->
-  <script src="js/components/AppNav.js"></script>
-  <script src="js/components/HeroSection.js"></script>
-  <script src="js/components/ProofStrip.js"></script>
-  <script src="js/components/ProblemSection.js"></script>
-  <script src="js/components/SolutionSection.js"></script>
-  <script src="js/components/WhyDifferent.js"></script>
-  <script src="js/components/FreeTierCallout.js"></script>
-  <script src="js/components/FaqSection.js"></script>
-  <script src="js/components/JobExamples.js"></script>
-  <script src="js/components/FinalCta.js"></script>
-  <script src="js/components/AppFooter.js"></script>
+  <main>
 
-  <!-- App bootstrap -->
-  <script src="js/app.js"></script>
+    <!-- ── Hero ── -->
+    <section id="hero" aria-labelledby="hero-heading">
+      <div class="inner hero-inner">
+        <div class="hero-badge" aria-hidden="true">
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+            <circle cx="7" cy="7" r="7" fill="#16A34A" fill-opacity="0.15"/>
+            <circle cx="7" cy="7" r="3" fill="#16A34A"/>
+          </svg>
+          Free job dashboard · No credit card required
+        </div>
+
+        <h1 id="hero-heading">
+          Find High-Quality Freelance Jobs<br />
+          <span class="highlight">Managed in One Dashboard</span>, for Free
+        </h1>
+
+        <p class="hero-sub">No job boards to scroll. No subscriptions to pay. A professional dashboard where your best opportunities are waiting — free.</p>
+
+        <a href="https://app.jobdrift.io/register" class="btn-primary btn-hero" id="signup">
+          Sign Up Free
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+            <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+
+        <p class="hero-note">Free job dashboard · No credit card required</p>
+      </div>
+    </section>
+
+    <!-- ── Proof Strip ── -->
+    <div class="proof-strip" aria-label="Key features">
+      <div class="proof-inner">
+        <div class="proof-stat">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M8 1l1.8 3.6 4 .58-2.9 2.83.68 3.99L8 10l-3.58 1.99.68-3.99L2.2 5.18l4-.58L8 1z" fill="#16A34A"/></svg>
+          <span><strong>Curated, not scraped</strong></span>
+        </div>
+        <div class="proof-dot" aria-hidden="true"></div>
+        <div class="proof-stat">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><circle cx="8" cy="8" r="6.5" stroke="#16A34A" stroke-width="1.4"/><path d="M5 8l2 2 4-4" stroke="#16A34A" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <span>AI-verified before sending</span>
+        </div>
+        <div class="proof-dot" aria-hidden="true"></div>
+        <div class="proof-stat">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2 8c0-3.3 2.7-6 6-6s6 2.7 6 6-2.7 6-6 6-6-2.7-6-6z" stroke="#16A34A" stroke-width="1.4"/><path d="M8 5v3l2 2" stroke="#16A34A" stroke-width="1.4" stroke-linecap="round"/></svg>
+          <span>Daily delivery</span>
+        </div>
+        <div class="proof-dot" aria-hidden="true"></div>
+        <div class="proof-stat">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M8 1l1.8 3.6 4 .58-2.9 2.83.68 3.99L8 10l-3.58 1.99.68-3.99L2.2 5.18l4-.58L8 1z" fill="#16A34A"/></svg>
+          <span><strong>Professional dashboard</strong></span>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── Problem ── -->
+    <section class="section section-alt" aria-labelledby="problem-heading">
+      <div class="inner">
+        <p class="section-label">The Problem</p>
+        <h2 class="section-headline" id="problem-heading">Finding Good Freelance Jobs<br />Is Broken</h2>
+        <p class="section-sub">You're doing everything right — but the tools weren't built for you.</p>
+
+        <div class="pain-grid">
+          <article class="pain-card">
+            <div class="pain-icon" aria-hidden="true">
+              <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                <path d="M10 3a7 7 0 1 0 0 14A7 7 0 0 0 10 3z" stroke="#EF4444" stroke-width="1.6"/>
+                <path d="M10 7v4M10 13h.01" stroke="#EF4444" stroke-width="1.6" stroke-linecap="round"/>
+              </svg>
+            </div>
+            <h3>Irrelevant alerts, every day</h3>
+            <p>You get job notifications that don't match your skills, budget, or schedule — and you can't stop them.</p>
+          </article>
+
+          <article class="pain-card">
+            <div class="pain-icon" aria-hidden="true">
+              <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                <path d="M3 10h14M10 3v14" stroke="#EF4444" stroke-width="1.6" stroke-linecap="round"/>
+              </svg>
+            </div>
+            <h3>Hours wasted scrolling junk</h3>
+            <p>Dozens of listings with $5 budgets, vague scopes, or already-closed positions buried in every feed.</p>
+          </article>
+
+          <article class="pain-card">
+            <div class="pain-icon" aria-hidden="true">
+              <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                <rect x="3" y="7" width="14" height="10" rx="2" stroke="#EF4444" stroke-width="1.6"/>
+                <path d="M7 7V5a3 3 0 0 1 6 0v2" stroke="#EF4444" stroke-width="1.6" stroke-linecap="round"/>
+              </svg>
+            </div>
+            <h3>Paying $30–$50/month for noise</h3>
+            <p>Expensive subscriptions promise quality leads but deliver the same automated bulk alerts as the free tier.</p>
+          </article>
+        </div>
+
+        <p class="closing-line">More tools. More noise. Fewer real opportunities.</p>
+      </div>
+    </section>
+
+    <!-- ── Solution ── -->
+    <section class="section" aria-labelledby="solution-heading">
+      <div class="inner">
+        <p class="section-label">How It Works</p>
+        <h2 class="section-headline" id="solution-heading">A Simple Way to Get Only<br />the Jobs That Matter</h2>
+        <p class="section-sub">Our AI system constantly monitors multiple platforms, filters and scores every listing, and sends you only the opportunities that match your exact criteria.</p>
+
+        <ol class="steps-row" style="list-style:none;">
+          <li class="step">
+            <div class="step-number" aria-hidden="true">1</div>
+            <div>
+              <h3>Tell us your skills &amp; preferences</h3>
+              <p>Share your stack, typical project type, and rate — takes under two minutes.</p>
+            </div>
+          </li>
+          <li class="step">
+            <div class="step-number" aria-hidden="true">2</div>
+            <div>
+              <h3>Our AI filters &amp; scores every opportunity</h3>
+              <p>The system constantly monitors sources and scores each listing against your profile — only the best matches get through.</p>
+            </div>
+          </li>
+          <li class="step">
+            <div class="step-number" aria-hidden="true">3</div>
+            <div>
+              <h3>Manage everything from your dashboard</h3>
+              <p>Log in to your free professional dashboard to browse, save, and act on matched opportunities — all in one place.</p>
+            </div>
+          </li>
+        </ol>
+
+        <a href="https://app.jobdrift.io/register" class="mini-cta">
+          Sign Up — it's free
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+            <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+      </div>
+    </section>
+
+    <!-- ── Why Different ── -->
+    <section class="section section-alt" aria-labelledby="why-heading">
+      <div class="inner">
+        <p class="section-label">Why We're Different</p>
+        <h2 class="section-headline" id="why-heading">Why This Isn't Just Another<br />Job Alert Tool</h2>
+
+        <div class="compare-grid">
+          <div class="compare-card them">
+            <span class="compare-tag">Other Tools</span>
+            <div class="compare-item">
+              <svg class="compare-icon" width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true">
+                <circle cx="9" cy="9" r="7.5" stroke="#EF4444" stroke-width="1.4"/>
+                <path d="M6 12l6-6M12 12L6 6" stroke="#EF4444" stroke-width="1.4" stroke-linecap="round"/>
+              </svg>
+              Automated scraping with zero filtering
+            </div>
+            <div class="compare-item">
+              <svg class="compare-icon" width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true">
+                <circle cx="9" cy="9" r="7.5" stroke="#EF4444" stroke-width="1.4"/>
+                <path d="M6 12l6-6M12 12L6 6" stroke="#EF4444" stroke-width="1.4" stroke-linecap="round"/>
+              </svg>
+              Mass alerts sent to everyone
+            </div>
+            <div class="compare-item">
+              <svg class="compare-icon" width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true">
+                <circle cx="9" cy="9" r="7.5" stroke="#EF4444" stroke-width="1.4"/>
+                <path d="M6 12l6-6M12 12L6 6" stroke="#EF4444" stroke-width="1.4" stroke-linecap="round"/>
+              </svg>
+              Expensive subscriptions ($30–$50/mo)
+            </div>
+          </div>
+
+          <div class="compare-card us">
+            <span class="compare-tag">JobDrift</span>
+            <div class="compare-item">
+              <svg class="compare-icon" width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true">
+                <circle cx="9" cy="9" r="7.5" stroke="#16A34A" stroke-width="1.4"/>
+                <path d="M5.5 9l2.5 2.5 4.5-4.5" stroke="#16A34A" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+              Curated &amp; filtered opportunities
+            </div>
+            <div class="compare-item">
+              <svg class="compare-icon" width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true">
+                <circle cx="9" cy="9" r="7.5" stroke="#16A34A" stroke-width="1.4"/>
+                <path d="M5.5 9l2.5 2.5 4.5-4.5" stroke="#16A34A" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+              Personalized job matching
+            </div>
+            <div class="compare-item">
+              <svg class="compare-icon" width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true">
+                <circle cx="9" cy="9" r="7.5" stroke="#16A34A" stroke-width="1.4"/>
+                <path d="M5.5 9l2.5 2.5 4.5-4.5" stroke="#16A34A" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+              Free professional dashboard
+            </div>
+          </div>
+        </div>
+
+        <p class="reinforce">Less noise. <strong>More real opportunities.</strong></p>
+        <div class="section-cta">
+          <a href="https://app.jobdrift.io/register" class="btn-primary">
+            Sign Up
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+              <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Free Tier Callout ── -->
+    <section class="section" aria-labelledby="free-heading">
+      <div class="inner" style="text-align:center;">
+        <p class="section-label">What You Get</p>
+        <h2 class="section-headline" id="free-heading" style="max-width:560px;margin:0 auto 16px;">Everything, Completely Free</h2>
+        <p style="font-size:17px;line-height:1.65;color:var(--secondary);max-width:480px;margin:0 auto 56px;">
+          Sign up and get a free job dashboard to manage your AI-curated job leads — no plans, no paywalls.
+        </p>
+
+        <div class="free-tier-grid">
+          <div class="free-tier-item">
+            <div class="free-tier-icon" aria-hidden="true">
+              <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
+                <rect x="3" y="4" width="16" height="14" rx="2" stroke="#16A34A" stroke-width="1.5"/>
+                <path d="M3 8h16" stroke="#16A34A" stroke-width="1.5"/>
+                <path d="M7 12h4M7 15h6" stroke="#16A34A" stroke-width="1.5" stroke-linecap="round"/>
+              </svg>
+            </div>
+            <div class="free-tier-number">Dashboard</div>
+            <div class="free-tier-label">professional hub<br />for all your leads</div>
+          </div>
+
+          <div class="free-tier-item">
+            <div class="free-tier-icon" aria-hidden="true">
+              <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
+                <circle cx="11" cy="11" r="8.5" stroke="#16A34A" stroke-width="1.5"/>
+                <path d="M7.5 11l2.5 2.5 4.5-4.5" stroke="#16A34A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <div class="free-tier-number">100%</div>
+            <div class="free-tier-label">AI-verified<br />before you see it</div>
+          </div>
+
+          <div class="free-tier-item">
+            <div class="free-tier-icon" aria-hidden="true">
+              <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
+                <path d="M11 2l2 4.5 5 .73-3.6 3.5.85 4.97L11 13.25l-4.25 2.45.85-4.97L4 7.23l5-.73L11 2z" stroke="#16A34A" stroke-width="1.5" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <div class="free-tier-number">Free</div>
+            <div class="free-tier-label">no hidden plans<br />or paywalls</div>
+          </div>
+
+          <div class="free-tier-item">
+            <div class="free-tier-icon" aria-hidden="true">
+              <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
+                <path d="M11 3C7.13 3 4 6.13 4 10c0 2.62 1.42 4.9 3.53 6.14L8 19h6l.47-2.86C16.58 14.9 18 12.62 18 10c0-3.87-3.13-7-7-7z" stroke="#16A34A" stroke-width="1.5" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <div class="free-tier-number">Smart</div>
+            <div class="free-tier-label">filtering based<br />on your skills</div>
+          </div>
+        </div>
+
+        <div style="margin-top:48px;">
+          <a href="https://app.jobdrift.io/register" class="btn-primary">
+            Sign Up
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+              <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── FAQ ── -->
+    <section class="section section-alt" aria-labelledby="faq-heading">
+      <div class="inner" style="text-align:center;">
+        <p class="section-label">FAQ</p>
+        <h2 class="section-headline" id="faq-heading" style="margin:0 auto;">Common Questions</h2>
+
+        <div class="faq-list" style="text-align:left;">
+
+          <div class="faq-item">
+            <button class="faq-toggle" aria-expanded="false" aria-controls="faq-body-1">
+              Where do the jobs come from?
+              <svg class="faq-chevron" width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true">
+                <path d="M4.5 6.75L9 11.25L13.5 6.75" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </button>
+            <div class="faq-body" id="faq-body-1" role="region">
+              <p class="faq-a">Currently sourced from Reddit communities and carefully filtered — with more platforms being added soon.</p>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-toggle" aria-expanded="false" aria-controls="faq-body-2">
+              Is this automated?
+              <svg class="faq-chevron" width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true">
+                <path d="M4.5 6.75L9 11.25L13.5 6.75" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </button>
+            <div class="faq-body" id="faq-body-2" role="region">
+              <p class="faq-a">Our AI system runs continuously, monitoring sources and scoring each listing against your profile. Only the top matches get sent to you — no bulk blasting.</p>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-toggle" aria-expanded="false" aria-controls="faq-body-3">
+              Is the dashboard really free?
+              <svg class="faq-chevron" width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true">
+                <path d="M4.5 6.75L9 11.25L13.5 6.75" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </button>
+            <div class="faq-body" id="faq-body-3" role="region">
+              <p class="faq-a">Yes — JobDrift is completely free. No hidden plans, no credit card required, no trial periods. Sign up and get full access to your professional dashboard straight away.</p>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-toggle" aria-expanded="false" aria-controls="faq-body-4">
+              How long until I receive my first alert?
+              <svg class="faq-chevron" width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true">
+                <path d="M4.5 6.75L9 11.25L13.5 6.75" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </button>
+            <div class="faq-body" id="faq-body-4" role="region">
+              <p class="faq-a">Most users receive their first curated batch within 24 hours of signing up.</p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Job Examples ── -->
+    <section id="job-examples" class="section section-alt" aria-labelledby="examples-heading">
+      <div class="inner">
+        <div class="examples-layout">
+
+          <!-- Left: text -->
+          <div class="examples-text">
+            <p class="section-label">Live Examples</p>
+            <h2 class="section-headline" id="examples-heading">Example Jobs We Find For You</h2>
+            <p class="section-sub" style="margin-bottom:40px;">Instead of scrolling through hundreds of listings, we send you curated freelance jobs that actually match your skills.</p>
+
+            <p class="examples-features-title">What You'll See in Every Job Match</p>
+
+            <ul class="examples-features">
+              <li class="examples-feature">
+                <div class="examples-feature-icon" aria-hidden="true">
+                  <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+                    <path d="M9 2l1.6 3.2 3.6.52-2.6 2.53.62 3.58L9 10l-3.22 1.83.62-3.58L3.8 5.72l3.6-.52L9 2z" fill="#16A34A"/>
+                  </svg>
+                </div>
+                <div>
+                  <strong>AI Match Score</strong>
+                  <p>Shows how closely the job matches your skills (0–100 score).</p>
+                </div>
+              </li>
+              <li class="examples-feature">
+                <div class="examples-feature-icon" aria-hidden="true">
+                  <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+                    <rect x="2" y="3" width="14" height="12" rx="2" stroke="#16A34A" stroke-width="1.5"/>
+                    <path d="M5 7h8M5 10h5" stroke="#16A34A" stroke-width="1.5" stroke-linecap="round"/>
+                  </svg>
+                </div>
+                <div>
+                  <strong>Job Summary</strong>
+                  <p>A short AI-generated summary explaining what the client actually wants.</p>
+                </div>
+              </li>
+              <li class="examples-feature">
+                <div class="examples-feature-icon" aria-hidden="true">
+                  <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+                    <rect x="2" y="6" width="5" height="2.5" rx="1.25" fill="#16A34A"/>
+                    <rect x="9" y="6" width="5" height="2.5" rx="1.25" fill="#16A34A" fill-opacity="0.5"/>
+                    <rect x="2" y="10" width="7" height="2.5" rx="1.25" fill="#16A34A" fill-opacity="0.7"/>
+                  </svg>
+                </div>
+                <div>
+                  <strong>Skill Match Tags</strong>
+                  <p>Highlights which of your skills match the job requirements.</p>
+                </div>
+              </li>
+              <li class="examples-feature">
+                <div class="examples-feature-icon" aria-hidden="true">
+                  <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+                    <path d="M7.5 4.5H4a1.5 1.5 0 0 0-1.5 1.5v8A1.5 1.5 0 0 0 4 15.5h8a1.5 1.5 0 0 0 1.5-1.5v-3.5" stroke="#16A34A" stroke-width="1.5" stroke-linecap="round"/>
+                    <path d="M10.5 2.5h5v5M15.5 2.5l-7 7" stroke="#16A34A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </div>
+                <div>
+                  <strong>Direct Job Link</strong>
+                  <p>One click to apply directly on the original platform.</p>
+                </div>
+              </li>
+            </ul>
+
+            <div style="margin-top:36px;">
+              <a href="https://app.jobdrift.io/register" class="btn-primary">
+                Sign Up
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                  <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </a>
+            </div>
+          </div>
+
+          <!-- Right: carousel -->
+          <div class="examples-carousel" aria-label="Job match examples">
+            <div class="carousel-track" id="carousel-track">
+              <div class="carousel-slide">
+                <img
+                  src="/Images/Example 1.png"
+                  alt="Example job match card showing AI match score, summary, and skill tags"
+                  class="carousel-img"
+                  loading="lazy"
+                  data-src="/Images/Example 1.png"
+                  data-alt="Example job match — AI match score, job summary, and skill tags"
+                />
+              </div>
+              <div class="carousel-slide">
+                <img
+                  src="/Images/Example 2.png"
+                  alt="Example job match card showing AI match score, summary, and skill tags"
+                  class="carousel-img"
+                  loading="lazy"
+                  data-src="/Images/Example 2.png"
+                  data-alt="Example job match — AI match score, job summary, and skill tags"
+                />
+              </div>
+              <div class="carousel-slide">
+                <img
+                  src="/Images/Example 3.png"
+                  alt="Example job match card showing AI match score, summary, and skill tags"
+                  class="carousel-img"
+                  loading="lazy"
+                  data-src="/Images/Example 3.png"
+                  data-alt="Example job match — AI match score, job summary, and skill tags"
+                />
+              </div>
+            </div>
+
+            <div class="carousel-controls" aria-label="Carousel navigation">
+              <button class="carousel-btn" id="carousel-prev" aria-label="Previous example">
+                <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true">
+                  <path d="M11 4.5L6.5 9L11 13.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </button>
+              <div class="carousel-dots" id="carousel-dots">
+                <button class="carousel-dot active" aria-label="Example 1" data-index="0"></button>
+                <button class="carousel-dot" aria-label="Example 2" data-index="1"></button>
+                <button class="carousel-dot" aria-label="Example 3" data-index="2"></button>
+              </div>
+              <button class="carousel-btn" id="carousel-next" aria-label="Next example">
+                <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true">
+                  <path d="M7 4.5L11.5 9L7 13.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </button>
+            </div>
+
+            <p class="carousel-hint" aria-hidden="true">Click image to enlarge</p>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Final CTA ── -->
+    <section id="final-cta" aria-labelledby="cta-heading">
+      <div class="inner">
+        <h2 id="cta-heading">Stop Searching.<br /><span class="highlight">Start Applying.</span></h2>
+        <p class="final-cta-sub">Sign up free and start managing your best freelance opportunities from one professional dashboard.</p>
+        <a href="https://app.jobdrift.io/register" class="btn-primary">
+          Sign Up
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+            <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ── Footer ── -->
+  <footer>
+    <p>&copy; 2026 JobDrift &nbsp;&middot;&nbsp; <a href="privacy.html">Privacy</a> &nbsp;&middot;&nbsp; <a href="terms.html">Terms</a></p>
+  </footer>
+
+  <!-- ── Lightbox (hidden until triggered) ── -->
+  <div id="lightbox" class="lightbox" hidden role="dialog" aria-modal="true" aria-label="Job post preview">
+    <button id="lightbox-close" class="lightbox-close" aria-label="Close preview">
+      <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true">
+        <path d="M4 4l10 10M14 4L4 14" stroke="white" stroke-width="2" stroke-linecap="round"/>
+      </svg>
+    </button>
+    <img id="lightbox-img" class="lightbox-img" src="" alt="" />
+  </div>
+
+  <script src="assets/js/main.js" defer></script>
 </body>
 </html>

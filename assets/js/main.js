@@ -1,6 +1,46 @@
 (function () {
   'use strict';
 
+  /* ── Scroll Reveal ── */
+  function revealEl(el) {
+    var delay = el.getAttribute('data-reveal-delay');
+    if (delay) {
+      setTimeout(function () { el.classList.add('revealed'); }, parseInt(delay, 10));
+    } else {
+      el.classList.add('revealed');
+    }
+  }
+
+  var revealObserver = new IntersectionObserver(function (entries) {
+    entries.forEach(function (entry) {
+      if (entry.isIntersecting) {
+        revealEl(entry.target);
+        revealObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.08, rootMargin: '0px 0px -32px 0px' });
+
+  document.querySelectorAll('[data-reveal]').forEach(function (el) {
+    revealObserver.observe(el);
+  });
+
+  // Scroll-through on load to trigger IntersectionObserver for all elements
+  // (also ensures screenshot tools capture fully-revealed content)
+  window.addEventListener('load', function () {
+    setTimeout(function () {
+      var h = document.documentElement.scrollHeight;
+      var step = window.innerHeight;
+      var pos = 0;
+      function next() {
+        pos += step;
+        window.scrollTo(0, pos);
+        if (pos < h) { requestAnimationFrame(next); }
+        else { window.scrollTo(0, 0); }
+      }
+      requestAnimationFrame(next);
+    }, 50);
+  });
+
   /* ── FAQ Accordion ── */
   document.querySelectorAll('.faq-toggle').forEach(function (btn) {
     btn.addEventListener('click', function () {

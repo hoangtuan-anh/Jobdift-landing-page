@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Terms &amp; Conditions — JobDrift</title>
   <meta name="description" content="JobDrift Terms and Conditions — the rules governing your use of the JobDrift platform and services." />
+  <link rel="icon" type="image/svg+xml" href="/brand_assets/Jobdrift logo.svg" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Sora:wght@600;700;800&display=swap" rel="stylesheet" />
@@ -13,7 +14,7 @@
     .policy-hero {
       background: var(--bg-alt);
       border-bottom: 1px solid var(--border);
-      padding: 64px 24px 48px;
+      padding: 124px 24px 48px;
     }
     .policy-hero .inner { max-width: 760px; }
     .policy-hero p.section-label { margin-bottom: 12px; }
@@ -70,6 +71,18 @@
       border-top: 1px solid var(--border);
       margin: 40px 0;
     }
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--secondary);
+      text-decoration: none;
+      margin-bottom: 24px;
+      transition: color 0.18s, gap 0.18s;
+    }
+    .back-link:hover { color: var(--dark); gap: 8px; }
   </style>
 </head>
 <body>
@@ -77,7 +90,9 @@
   <header>
     <nav aria-label="Main navigation">
       <div class="nav-inner">
-        <a href="/" class="logo">Job<span>Drift</span></a>
+        <a href="/" class="logo">
+          <img src="/brand_assets/Logo white text.svg" class="logo-full" alt="JobDrift" height="30" />
+        </a>
         <a href="https://app.jobdrift.io/register" class="nav-cta">Sign Up</a>
       </div>
     </nav>
@@ -86,6 +101,10 @@
   <main>
     <div class="policy-hero">
       <div class="inner">
+        <a href="/" class="back-link">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M10 3L5 8l5 5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          Back to home
+        </a>
         <p class="section-label">Legal</p>
         <h1>Terms &amp; Conditions</h1>
         <p class="policy-meta">Last updated: November 27, 2023</p>

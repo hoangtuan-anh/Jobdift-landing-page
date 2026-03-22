@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Blog — Jobdrift</title>
+  <meta name="description" content="" />
+  <link rel="icon" type="image/svg+xml" href="/brand_assets/Jobdrift logo.svg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Sora:wght@600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/css/main.css" />
+  <style>body{background:#0B0F19}</style>
+</head>
+<body>
+
+  <!-- ── Navigation ── -->
+  <header>
+    <nav aria-label="Main navigation">
+      <div class="nav-inner">
+        <a href="/" class="logo">
+          <img src="/brand_assets/Logo white text.svg" class="logo-full" alt="JobDrift" height="30" />
+        </a>
+        <ul class="nav-links" role="list">
+          <li><a href="/#how-it-works" class="nav-link">How It Works</a></li>
+          <li><a href="/#job-examples" class="nav-link">Examples</a></li>
+          <li><a href="/#faq" class="nav-link">FAQ</a></li>
+          <li><a href="blog.html" class="nav-link">Blog</a></li>
+        </ul>
+        <a href="https://app.jobdrift.io/register" class="nav-cta">Sign Up</a>
+      </div>
+    </nav>
+  </header>
+
+  <!-- ── Post Hero (dark) ── -->
+  <div class="post-hero">
+    <div class="post-hero-inner">
+      <a href="blog.html" class="back-to-blog">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+          <path d="M10 12L6 8l4-4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        Back to Blog
+      </a>
+      <div id="post-hero-content">
+        <!-- skeleton shown immediately, replaced by JS -->
+        <div class="post-hero-skeleton">
+          <div class="skel-line" style="width:22%;height:13px;margin-bottom:20px;background:rgba(255,255,255,0.1)"></div>
+          <div class="skel-line" style="width:88%;height:40px;margin-bottom:10px;background:rgba(255,255,255,0.1)"></div>
+          <div class="skel-line" style="width:58%;height:40px;margin-bottom:24px;background:rgba(255,255,255,0.1)"></div>
+          <div class="skel-line" style="width:26%;height:14px;background:rgba(255,255,255,0.06)"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── White body starts here ── -->
+  <div class="post-body">
+
+    <!-- Cover photo -->
+    <div id="post-featured-wrap" class="post-featured-section">
+      <div class="post-featured-inner">
+        <div id="post-cover" class="post-cover post-cover-placeholder">
+          <img id="post-featured-img" src="" alt="" class="post-cover-img" style="display:none" />
+          <div class="post-cover-placeholder-inner" id="post-cover-placeholder">
+            <svg width="48" height="48" viewBox="0 0 48 48" fill="none" aria-hidden="true">
+              <rect width="48" height="48" rx="12" fill="rgba(29,193,7,0.12)"/>
+              <path d="M12 34l9-9 5 5 7-9 9 13H12z" fill="rgba(29,193,7,0.35)"/>
+              <circle cx="18" cy="20" r="4" fill="rgba(29,193,7,0.5)"/>
+            </svg>
+            <span>Cover photo</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Article content -->
+    <div class="post-content-section">
+      <div class="post-content-wrap">
+        <div id="post-content" class="post-content">
+          <!-- skeleton -->
+          <div class="skel-line" style="width:100%;height:16px;margin-bottom:10px"></div>
+          <div class="skel-line" style="width:92%;height:16px;margin-bottom:10px"></div>
+          <div class="skel-line" style="width:78%;height:16px;margin-bottom:28px"></div>
+          <div class="skel-line" style="width:100%;height:16px;margin-bottom:10px"></div>
+          <div class="skel-line" style="width:96%;height:16px;margin-bottom:10px"></div>
+          <div class="skel-line" style="width:85%;height:16px;margin-bottom:10px"></div>
+          <div class="skel-line" style="width:90%;height:16px;margin-bottom:28px"></div>
+          <div class="skel-line" style="width:40%;height:22px;margin-bottom:16px"></div>
+          <div class="skel-line" style="width:100%;height:16px;margin-bottom:10px"></div>
+          <div class="skel-line" style="width:88%;height:16px;margin-bottom:10px"></div>
+          <div class="skel-line" style="width:70%;height:16px"></div>
+        </div>
+
+        <!-- CTA at bottom of article -->
+        <div id="post-cta" class="post-article-cta" style="display:none">
+          <div class="post-article-cta-inner">
+            <p class="post-article-cta-label">Ready to find better freelance work?</p>
+            <h3>Stop searching. Start earning.</h3>
+            <p>Jobdrift finds and curates freelance jobs for you — completely free.</p>
+            <a href="https://app.jobdrift.io/register" class="btn-primary">Sign up free →</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Related posts -->
+    <section class="related-section" id="related-section" style="display:none">
+      <div class="related-inner">
+        <p class="related-label">Keep reading</p>
+        <h2 class="related-headline">Related articles</h2>
+        <div id="related-grid" class="related-grid"></div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+      <div class="footer-inner">
+        <div class="footer-brand">
+          <a href="/" class="logo"><img src="/brand_assets/logo black text.svg" class="logo-footer" alt="JobDrift" height="26" /></a>
+          <p>Find and manage high-quality freelance jobs from one professional dashboard — completely free.</p>
+        </div>
+        <div class="footer-links">
+          <div class="footer-col">
+            <h4>Product</h4>
+            <a href="/#how-it-works">How It Works</a>
+            <a href="https://app.jobdrift.io/register">Sign Up Free</a>
+            <a href="https://app.jobdrift.io">Dashboard</a>
+          </div>
+          <div class="footer-col">
+            <h4>Legal</h4>
+            <a href="privacy.html">Privacy Policy</a>
+            <a href="terms.html">Terms of Service</a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>&copy; 2026 JobDrift. All rights reserved.</span>
+        <span><a href="privacy.html">Privacy</a> &nbsp;&middot;&nbsp; <a href="terms.html">Terms</a></span>
+      </div>
+    </footer>
+
+  </div><!-- /.post-body -->
+
+  <script src="assets/js/blog.js"></script>
+  <script>
+    (async () => {
+      const slug = new URLSearchParams(location.search).get('slug');
+      if (!slug) { location.href = 'blog.html'; return; }
+
+      try {
+        const post = await fetchPostBySlug(slug);
+        if (!post) { location.href = 'blog.html'; return; }
+
+        // Update page meta
+        document.title = `${post.title.rendered} — Jobdrift Blog`;
+        document.querySelector('meta[name="description"]').content = getExcerpt(post, 155);
+
+        // Reading time
+        const words = stripHtml(post.content?.rendered || '').split(/\s+/).length;
+        const mins  = Math.max(1, Math.round(words / 200));
+
+        // Hero
+        const cats = getCategories(post);
+        const cat  = cats[0];
+        document.getElementById('post-hero-content').innerHTML = `
+          ${cat ? `<span class="post-cat">${cat.name}</span>` : ''}
+          <h1 class="post-title">${post.title.rendered}</h1>
+          <div class="post-meta-row">
+            <time datetime="${post.date}">${formatDate(post.date)}</time>
+            <span class="post-read-time">${mins} min read</span>
+          </div>`;
+
+        // Cover photo
+        const img = getFeaturedImage(post);
+        if (img) {
+          const imgEl = document.getElementById('post-featured-img');
+          imgEl.src = img;
+          imgEl.alt = post.title.rendered;
+          imgEl.style.display = '';
+          document.getElementById('post-cover').classList.remove('post-cover-placeholder');
+          document.getElementById('post-cover-placeholder').style.display = 'none';
+        }
+
+        // Article content
+        document.getElementById('post-content').innerHTML = post.content.rendered;
+        document.getElementById('post-cta').style.display = '';
+
+        // Related posts
+        const catId = cat?.id || null;
+        const { posts: related } = await fetchPosts({ perPage: 3, categoryId: catId, excludeId: post.id });
+        if (related.length) {
+          document.getElementById('related-grid').innerHTML = related.map(renderCard).join('');
+          document.getElementById('related-section').style.display = '';
+          revealCards();
+        }
+      } catch (err) {
+        document.getElementById('post-content').innerHTML =
+          '<p style="color:#6B7280">Could not load this post. <a href="blog.html" style="color:var(--green)">Back to blog →</a></p>';
+      }
+    })();
+  </script>
+</body>
+</html>

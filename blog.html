@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Blog — Jobdrift</title>
+  <meta name="description" content="Freelance tips, platform reviews, and career strategies from the Jobdrift team." />
+  <link rel="icon" type="image/svg+xml" href="/brand_assets/Jobdrift logo.svg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Sora:wght@600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/css/main.css" />
+  <style>body{background:#0B0F19}</style>
+</head>
+<body>
+
+  <!-- ── Navigation ── -->
+  <header>
+    <nav aria-label="Main navigation">
+      <div class="nav-inner">
+        <a href="/" class="logo">
+          <img src="/brand_assets/Logo white text.svg" class="logo-full" alt="JobDrift" height="30" />
+        </a>
+        <ul class="nav-links" role="list">
+          <li><a href="/#how-it-works" class="nav-link">How It Works</a></li>
+          <li><a href="/#job-examples" class="nav-link">Examples</a></li>
+          <li><a href="/#faq" class="nav-link">FAQ</a></li>
+          <li><a href="blog.html" class="nav-link" aria-current="page">Blog</a></li>
+        </ul>
+        <a href="https://app.jobdrift.io/register" class="nav-cta">Sign Up</a>
+      </div>
+    </nav>
+  </header>
+
+  <!-- ── Hero ── -->
+  <div class="blog-hero">
+    <div class="inner">
+      <p class="blog-hero-label">The Jobdrift Blog</p>
+      <h1>Freelance insights &amp; guides</h1>
+      <p>Tips, strategies, and resources to help you land better freelance work and grow your income.</p>
+    </div>
+  </div>
+
+  <!-- ── Posts grid ── -->
+  <section class="blog-all-section">
+    <div class="inner">
+      <div id="blog-grid" class="blog-all-grid">
+        <!-- injected by JS -->
+      </div>
+      <div id="blog-pagination" class="blog-pagination"></div>
+    </div>
+  </section>
+
+  <!-- ── Footer ── -->
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <a href="/" class="logo"><img src="/brand_assets/logo black text.svg" class="logo-footer" alt="JobDrift" height="26" /></a>
+        <p>Find and manage high-quality freelance jobs from one professional dashboard — completely free.</p>
+      </div>
+      <div class="footer-links">
+        <div class="footer-col">
+          <h4>Product</h4>
+          <a href="/#how-it-works">How It Works</a>
+          <a href="https://app.jobdrift.io/register">Sign Up Free</a>
+          <a href="https://app.jobdrift.io">Dashboard</a>
+        </div>
+        <div class="footer-col">
+          <h4>Legal</h4>
+          <a href="privacy.html">Privacy Policy</a>
+          <a href="terms.html">Terms of Service</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; 2026 JobDrift. All rights reserved.</span>
+      <span><a href="privacy.html">Privacy</a> &nbsp;&middot;&nbsp; <a href="terms.html">Terms</a></span>
+    </div>
+  </footer>
+
+  <script src="assets/js/blog.js"></script>
+  <script>
+    let currentPage = 1;
+
+    async function loadPage(page) {
+      currentPage = page;
+      const grid = document.getElementById('blog-grid');
+      grid.innerHTML = skeletonCards(WP_CONFIG.postsPerPage);
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+
+      try {
+        const { posts, totalPages } = await fetchPosts({ perPage: WP_CONFIG.postsPerPage, page });
+        grid.innerHTML = posts.length ? posts.map(renderCard).join('') : '<p class="blog-empty">No posts found.</p>';
+        renderPagination(page, totalPages);
+      } catch (err) {
+        grid.innerHTML = '<p class="blog-empty">Could not load posts. Please try again later.</p>';
+      }
+      revealCards();
+    }
+
+    function renderPagination(page, totalPages) {
+      const el = document.getElementById('blog-pagination');
+      if (totalPages <= 1) { el.innerHTML = ''; return; }
+      let html = `<button class="blog-page-btn" ${page === 1 ? 'disabled' : ''} data-page="${page - 1}" aria-label="Previous page">‹</button>`;
+      for (let i = 1; i <= totalPages; i++) {
+        html += `<button class="blog-page-btn ${i === page ? 'active' : ''}" data-page="${i}">${i}</button>`;
+      }
+      html += `<button class="blog-page-btn" ${page === totalPages ? 'disabled' : ''} data-page="${page + 1}" aria-label="Next page">›</button>`;
+      el.innerHTML = html;
+      el.querySelectorAll('[data-page]').forEach(btn => {
+        btn.addEventListener('click', () => !btn.disabled && loadPage(parseInt(btn.dataset.page)));
+      });
+    }
+
+    loadPage(1);
+  </script>
+</body>
+</html>

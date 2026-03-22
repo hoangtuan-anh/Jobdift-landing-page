@@ -12,18 +12,24 @@
     }
   }
 
-  var revealObserver = new IntersectionObserver(function (entries) {
-    entries.forEach(function (entry) {
-      if (entry.isIntersecting) {
-        revealEl(entry.target);
-        revealObserver.unobserve(entry.target);
-      }
-    });
-  }, { threshold: 0.08, rootMargin: '0px 0px -32px 0px' });
+  if ('IntersectionObserver' in window) {
+    var revealObserver = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          revealEl(entry.target);
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.08, rootMargin: '0px 0px -32px 0px' });
 
-  document.querySelectorAll('[data-reveal]').forEach(function (el) {
-    revealObserver.observe(el);
-  });
+    document.querySelectorAll('[data-reveal]').forEach(function (el) {
+      revealObserver.observe(el);
+    });
+  } else {
+    document.querySelectorAll('[data-reveal]').forEach(function (el) {
+      el.classList.add('revealed');
+    });
+  }
 
   document.querySelectorAll('.faq-toggle').forEach(function (btn) {
     btn.addEventListener('click', function () {
@@ -48,14 +54,16 @@
   var lightboxClose = document.getElementById('lightbox-close');
 
   function openLightbox(src, alt) {
+    if (!lightbox || !lightboxImg) return;
     lightboxImg.src = src;
     lightboxImg.alt = alt || '';
     lightbox.removeAttribute('hidden');
     document.body.style.overflow = 'hidden';
-    lightboxClose.focus();
+    if (lightboxClose) lightboxClose.focus();
   }
 
   function closeLightbox() {
+    if (!lightbox || !lightboxImg) return;
     lightbox.setAttribute('hidden', '');
     document.body.style.overflow = '';
     lightboxImg.src = '';
@@ -84,6 +92,7 @@
   var current = 0;
 
   function goTo(index) {
+    if (!slides.length || !dots.length) return;
     slides[current].classList.remove('active');
     dots[current].classList.remove('active');
     current = (index + slides.length) % slides.length;
@@ -93,7 +102,7 @@
 
   if (slides.length) {
     slides[0].classList.add('active');
-    dots[0] && dots[0].classList.add('active');
+    if (dots[0]) dots[0].classList.add('active');
 
     if (prevBtn) prevBtn.addEventListener('click', function () { goTo(current - 1); });
     if (nextBtn) nextBtn.addEventListener('click', function () { goTo(current + 1); });
@@ -111,4 +120,3 @@
     });
   }
 })();
-
